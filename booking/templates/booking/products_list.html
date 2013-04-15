@@ -7,7 +7,7 @@
 {% for object in object_list%}
 <div class="fieldWrapper">
     <div class="field">
-        <div class="label">{% trans "Name" %}:</div>
+        <div class="label">{{object.category}}:</div>
         <div class="widget">
             {{object.name}} <em>(order {{object.order}})</em>
             <a href="{%url "product_update" object.id %}">Edit</a>

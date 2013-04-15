@@ -19,6 +19,21 @@
     </div>
 </div>
 <a href="{% url "productscategory_update" object.id %}">{% trans "Modify" %}</a>
+<hr />
+<h2>Products</h2>
+{% for object in object.products_set.all%}
+<div class="fieldWrapper">
+    <div class="field">
+        <div class="label">{{object.category}}:</div>
+        <div class="widget">
+            {{object.name}} <em>(order {{object.order}})</em>
+            <a href="{%url "product_update" object.id %}">Edit</a>
+            <a href="{%url "product_detail" object.id %}">View</a>
+        </div>
+    </div>
+</div>
+{%endfor%}
+
 
 
 {% endblock%}

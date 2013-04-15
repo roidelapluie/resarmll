@@ -1,15 +1,16 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+from hackers.models import Hacker
 
 class ProductsCategory(models.Model):
-    class meta:
+    class Meta:
         verbose_name=_('products category')
         verbose_name_plural=_('products categories')
         ordering = ['order']
 
     name = models.CharField(_('name'),max_length=64)
-    ordering = models.IntegerField(_('order'), help_text=_('0 will be on top'))
+    order = models.IntegerField(_('order'), help_text=_('0 will be on top'))
 
     def __unicode__(self):
         return self.name
@@ -18,10 +19,10 @@ class ProductsCategory(models.Model):
         return reverse('productscategory_detail', args=[str(self.id)])
 
 class Products(models.Model):
-    class meta:
+    class Meta:
         verbose_name=_('product')
         verbose_name_plural=_('products')
-        ordering = ['order']
+        ordering = ['category', 'order']
 
     def __unicode__(self):
         return self.name
@@ -29,12 +30,19 @@ class Products(models.Model):
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.id)])
 
+    def get_free_items(self):
+        return self.stockitem_set.filter(order__isnull=True)
+
+    def get_booked_items(self):
+        return self.stockitem_set.filter(order__isnull=False)
+
     name = models.CharField(_('name'),max_length=128)
-    ordering = models.IntegerField(_('order'), help_text=_('0 will be on top'))
     category = models.ForeignKey(ProductsCategory)
+    order = models.IntegerField(_('order'), help_text=_('0 will be on top'))
+    price = models.FloatField(_('Price'), help_text=_('in EUR'))
 
 class StockItem(models.Model):
-    class meta:
+    class Meta:
         verbose_name=_('stock item')
         verbose_name_plural=_('stock items')
 
@@ -42,7 +50,7 @@ class StockItem(models.Model):
     order = models.ForeignKey('Order', null=True)
 
 class Order(models.Model):
-    class meta:
+    class Meta:
         verbose_name=_('Order')
         verbose_name_plural=_('Orders')
 
@@ -54,4 +62,5 @@ class Order(models.Model):
     order_date = models.DateTimeField(_('creation date'), null=True)
     payment_date = models.DateField('payment date', null=True)
     payment_type = models.CharField('payment type', max_length=64, null=True)
+    user = models.ForeignKey(Hacker)
 

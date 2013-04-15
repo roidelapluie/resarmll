@@ -6,7 +6,7 @@
 <h1>{% trans "Profile" %}</h1>
 <div id="profile">
     <div class="field">
-        <div class="label">{%trans "Id"%}:</div>
+        <div class="label">{%trans "id"%}:</div>
         {{object.id}}
     </div>
     <div class="field">
@@ -17,8 +17,27 @@
         <div class="label">{%trans "Order"%}:</div>
         {{object.order}}
     </div>
+    <div class="field">
+        <div class="label">{%trans "Price"%}:</div>
+        {{object.price}}
+    </div>
 </div>
 <a href="{% url "productscategory_update" object.id %}">{% trans "Modify" %}</a>
-
-
+<hr />
+<h2>Stock</h2>
+<div id="stock">
+    <div class="field">
+        <div class="label">{%trans "Total"%}:</div>
+        {{ object.stockitem_set.all|length }}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Ordered"%}:</div>
+        {{ object.get_booked_items|length }}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Free"%}:</div>
+        {{ object.get_free_items|length }}
+    </div>
+</div>
+<a href="{% url "booking_add_in_stock" object.id %}">{%trans "Add" %}</a> - <a href="{% url "booking_remove_from_stock" object.id %}">{%trans "Delete" %}</a>
 {% endblock%}
