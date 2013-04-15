@@ -1,0 +1,10 @@
+{% extends "resarmll/base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block content %}
+<h1>{% trans "Edit profile" %}</h1>
+<form action="{% url 'hackers_update' %}" method="post">
+    {% include "resarmll/form_snippet.html" %}
+    <p><input type="submit" value="{% trans "Submit" %}" /></p>
+</form>
+{% endblock %}

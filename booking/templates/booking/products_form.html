@@ -1,0 +1,11 @@
+{% extends "resarmll/base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block content %}
+
+<h1>{% trans "Product" %}</h1>
+<form method="post">
+        {% include "resarmll/form_snippet.html" %}
+        <p><input type="submit" value="{% trans "Submit" %}" /></p>
+</form>
+{% endblock %}

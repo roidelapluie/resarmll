@@ -1,0 +1,80 @@
+{% extends "resarmll/base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block content %}
+
+<h1>{% trans "Profile" %}</h1>
+<div id="profile">
+    <div class="field">
+        <div class="label">{%trans "Id"%}:</div>
+        {{user.id}}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Username"%}:</div>
+        {{user.username}}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Email"%}:</div>
+        {{user.email}}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "First name"%}:</div>
+        {{user.first_name}}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Last name"%}:</div>
+        {{user.last_name}}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Address"%}:</div>
+        {% if user.address %}
+        {{user.address}}
+        {% else %}
+        <em>{%trans "Empty"%}</em>
+        {% endif %}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Language"%}:</div>
+        {% if user.language %}
+        {{user.language}}
+        {% else %}
+        <em>{%trans "Empty"%}</em>
+        {% endif %}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Gender"%}:</div>
+        {%if user.gender%}
+        {{user.gender}}
+        {% else %}
+        <em>{%trans "Empty"%}</em>
+        {% endif %}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Badge type"%}:</div>
+        {% if user.badge_type %}
+        {{user.badge_type}}
+        {% else %}
+        <em>{%trans "Empty"%}</em>
+        {% endif %}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Badge text"%}:</div>
+        {%if user.badge_text%}
+        {{user.badge_text}}
+        {% else %}
+        <em>{%trans "Empty"%}</em>
+        {% endif %}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Being volunteer"%}:</div>
+        {%if user.is_volunteer%}
+        {% trans "I would like to give some hours to help" %}
+        {% else %}
+        {% trans "I do not want to help" %}
+        {% endif %}
+    </div>
+</div>
+<a href="{% url "hackers_update" %}">{% trans "Modify" %}</a>
+
+
+{% endblock%}

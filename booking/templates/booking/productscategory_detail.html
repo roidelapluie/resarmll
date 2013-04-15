@@ -1,0 +1,24 @@
+{% extends "resarmll/base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block content %}
+
+<h1>{% trans "Profile" %}</h1>
+<div id="profile">
+    <div class="field">
+        <div class="label">{%trans "Id"%}:</div>
+        {{object.id}}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Name"%}:</div>
+        {{object.name}}
+    </div>
+    <div class="field">
+        <div class="label">{%trans "Order"%}:</div>
+        {{object.order}}
+    </div>
+</div>
+<a href="{% url "productscategory_update" object.id %}">{% trans "Modify" %}</a>
+
+
+{% endblock%}

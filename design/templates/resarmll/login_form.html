@@ -1,0 +1,10 @@
+{% extends "resarmll/base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block content %}
+<h1>{% trans "Login" %}</h1>
+<form action="{% url 'django.contrib.auth.views.login' %}" method="post">
+    {% include "resarmll/form_snippet.html" %}
+    <p><input type="submit" value="Connexion" /></p>
+</form>
+{% endblock %}

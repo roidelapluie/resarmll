@@ -1,0 +1,140 @@
+{% load i18n %}
+{% load url from future %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 />
+        <title>{% trans "LSM booking" %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css" />
+        <style type="text/css" media="all">@import url("{{MEDIA_URL}}/css/system.base.css");
+            @import url("{{MEDIA_URL}}/css/system.menus.css");
+            @import url("{{MEDIA_URL}}/css/system.messages.css");
+            @import url("{{MEDIA_URL}}/css/system.theme.css");</style>
+        <style type="text/css" media="all">@import url("{{MEDIA_URL}}/css/jquery.ui.core.css");
+            @import url("{{MEDIA_URL}}/css/jquery.ui.theme.css");</style>
+        <style type="text/css" media="all">@import url("{{MEDIA_URL}}/css/field.css");
+            @import url("{{MEDIA_URL}}/css/node.css");
+            @import url("{{MEDIA_URL}}/css/user.css");
+            @import url("{{MEDIA_URL}}/css/views.css");</style>
+        <style type="text/css" media="all">@import url("{{MEDIA_URL}}/css/ctools.css");
+            @import url("{{MEDIA_URL}}/css/superfish.css");
+            @import url("{{MEDIA_URL}}/css/superfish-vertical.css");
+            @import url("{{MEDIA_URL}}/css/superfish-navbar.css");
+            @import url("{{MEDIA_URL}}/css/extlink.css");
+            @import url("{{MEDIA_URL}}/css/locale.css");
+            @import url("{{MEDIA_URL}}/css/smoothDivScroll.css");</style>
+        <style type="text/css" media="screen,projection">@import url("{{MEDIA_URL}}/css/screen.css");</style>
+        <style type="text/css" media="print">@import url("{{MEDIA_URL}}/css/print.css");</style>
+        <style type="text/css" media="all">@import url("{{MEDIA_URL}}/css/rmll.css");</style>
+
+        <!--[if lt IE 8]>
+        <style type="text/css" media="all">@import url("{{MEDIA_URL}}/css/ie.css");</style>
+        <![endif]-->
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.js?v=1.4.4"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.once.js?v=1.2"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/drupal.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.ui.core.min.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.ui.widget.min.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.hoverIntent.minified.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.bgiframe.min.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/superfish.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/supersubs.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/supposition.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/sftouchscreen.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/extlink.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/jquery.smoothDivScroll-1.1-min.js"></script>
+        <script type="text/javascript" src="{{MEDIA_URL}}/js/rmll.js"></script>
+        <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {
+"extlink": {
+        "extTarget": "_blank",
+        "extClass": "ext",
+        "extSubdomains": 1,
+        "extExclude": "",
+        "extInclude": "",
+        "extAlert": 0,
+        "extAlertText": "This link will take you to an external web site. We are not responsible for their content.",
+        "mailtoClass": "mailto"
+    }
+
+        });
+//--><!]]>
+</script>
+        </head>
+        <body class="html front not-logged-in no-sidebars page-node page-node- page-node-1 node-type-page i18n-fr">
+
+<div id="header">
+  <div class="container">
+    <div class="span-22 push-1">
+      <div class="span-6 first logo">
+        <a href="% url booking.home %"><img src="{{MEDIA_URL}}/img/rmll{{ LANGUAGE_CODE }}.png" alt="{% trans "Libre Software Meeting" %}" width="205" height="84" /></a>
+      </div>
+      <div class="span-16 last event">
+          <a href="% url booking.home %"><img src="{{MEDIA_URL}}/img/brussels-2013-{{ LANGUAGE_CODE }}.png" alt="{% trans "Libre Software Meeting" %}" /></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #RMLL-start-header -->
+<div id="menu">
+    <div class="container">
+        <div class="span-22 push-1">
+            <div id="block-superfish-1" class="block block-superfish">
+                <div class="content">
+                    <ul id="superfish-1" class="sf-menu main-menu sf-horizontal sf-style-none sf-total-items-1">
+                    <li class="last sf-no-children ">
+                        <a href="{% trans "http://2013.rmll.info/en" %}">{% trans "Back to the LSM website" %}</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #RMLL-end-header -->
+<div id="wrapper">
+    <div class="container">
+        <div class="span-22 push-1 blueprint">
+            <div class="span-22 content-top">
+                <div class="span-6 first leftcol">
+                    {% if user.is_authenticated %}
+                    <div class="button shadow">
+                        <a href="{% url "hackers_profile" %}">{% trans "Profile" %}</a>
+                    </div>
+                    <div class="button shadow">
+                        <a href="{% url "django.contrib.auth.views.logout" %}">{% trans "Logout" %}</a>
+                    </div>
+                    {% if user.is_admin %}
+                    <div class="button shadow">
+                        <a href="{% url "booking_category_list" %}"><span class="green">{% trans "Products categories" %}</span></a>
+                    </div>
+                    <div class="button shadow">
+                        <a href="{% url "product_list" %}"><span class="green">{% trans "Products" %}</span></a>
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <div class="button shadow">
+                        <a href="{% url "django.contrib.auth.views.login" %}">{% trans "Login" %}</a>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="span-16 last rightcol shadow">
+                    <div id="content">
+                        <div class="tabs"></div><div id="block-system-main" class="block block-system">
+                            <div class="content">
+                                {% block content%}
+                                {% endblock %}
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #RMLL-start-footer -->
+<div id="footer">
+</div>
+<!-- #RMLL-end-footer -->
+</body>
+</html>
